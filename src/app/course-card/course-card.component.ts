@@ -9,16 +9,18 @@ import {
     Input,
     OnInit,
     Output, QueryList, TemplateRef,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
-import {COURSES} from '../../db-data';
-import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
+import { COURSES } from '../../db-data';
+import { Course } from '../model/course';
+import { CourseImageComponent } from '../course-image/course-image.component';
 
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
-    styleUrls: ['./course-card.component.css']
+    styleUrls: ['./course-card.component.css'],
+    encapsulation: ViewEncapsulation.Emulated
 })
 export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 
@@ -31,7 +33,7 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
     @Output('courseSelected')
     courseEmitter = new EventEmitter<Course>();
 
-    @ContentChildren(CourseImageComponent, {read: ElementRef})
+    @ContentChildren(CourseImageComponent, { read: ElementRef })
     images: QueryList<ElementRef>;
 
     constructor() {
